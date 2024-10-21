@@ -1,9 +1,8 @@
 from django.urls import path
-from . import views
+
+from . import views # import views so we can use them in urls.
 
 
 urlpatterns = [
-    path('user/', views.ListUserView.as_view(), name='userlog'),
-    path('creat/', views.CreatUserView.as_view(), name='creatuser'),
-    path('<pk>/edit/', views.UpdateUserView.as_view(), name='edituser'),
+    #path('', views.index), # "/store" will call the method "index" in "views.py"
 ]
