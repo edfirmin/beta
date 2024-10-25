@@ -1,36 +1,36 @@
-version: '3.9'
-
 services:
   django:
     image: django
     container_name: django
     build:
-      context: ./Back
+      context: ./back
     volumes:
-      - ./Back/back:/usr/scr/app/
+      - ./back/:/usr/src/app
     ports:
-      - "6677:8008"
-    env_file: .env
+      - "8000:8000"
+    env_file: ./back/.env
   
   db_postgres:
     image: postgres
     container_name: postgres
     build:
-      context: ./Database
+      context: ./database
     ports:
       - "5432:5432"
-    env_file: .env
+    env_file: ./database/.env
     restart: always
   
-  # react:
-  #   image: react
-  #   container_name: react
-  #   build:
-  #     context: ./Front
-  #   ports:
-  #     - "7777:5173"
-  #   env_file: .env
-  #   restart: always
+  react:
+    image: react
+    container_name: react
+    build:
+      context: ./front
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./front/frontend/:/app
+    env_file: ./front/frontend/.env
+    restart: always
 
   adminer:
     image: adminer

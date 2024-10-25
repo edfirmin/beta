@@ -12,14 +12,10 @@ until postgres_is_ready; do
     echo "PostgreSQL not ready..."
     sleep 5
 done
-#sleep 5
-#echo "${POSTGRES_PASSWORD}"
 
 echo "PostgreSQL is ready"
 
-python3 /usr/src/app/back/manage.py makemigrations
-python3 /usr/src/app/back/manage.py migrate
-python3 /usr/src/app/back/manage.py runserver 0.0.0.0:8008
-
-echo "END"
+python3 /usr/src/app/backend/manage.py makemigrations
+python3 /usr/src/app/backend/manage.py migrate
+python3 /usr/src/app/backend/manage.py runserver 0.0.0.0:8000
 
