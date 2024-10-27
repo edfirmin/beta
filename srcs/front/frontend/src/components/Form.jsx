@@ -3,6 +3,7 @@ import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css"
+import LoadingIndicator from "./LoadingIndicator";
 
 function From({route, method}) {
     const [username, setUsername] = useState("")//"username" = la variable, "setUsename" = la methode pour pouvoir la modifier, "useState" = defini son type en gros
@@ -39,6 +40,7 @@ function From({route, method}) {
         <h1>{name}</h1>
         <input className="form-imput" type="text" value={username} onChange={(f) => setUsername(f.target.value)} placeholder="Username"></input>
         <input className="form-imput" type="password" value={password} onChange={(f) => setPassword(f.target.value)} placeholder="Password"></input>
+        {loading && <LoadingIndicator/>}
         <button className="form-button" type="subimt">{name}</button>
     </form>
 
