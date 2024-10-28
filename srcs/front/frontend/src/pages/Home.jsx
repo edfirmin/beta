@@ -1,58 +1,23 @@
-import { useState, useEffect } from "react"
-import api from "../api";
-import Note from "../components/Note";
+//import { useState, useEffect } from "react"
+//import api from "../api";
 import "../styles/Home.css"
+import {useNavigate} from "react-router-dom"
 
 function Home() {
-    const [notes, setNotes] = useState([]);//fonction
-    const [content, setContent] = useState("");//string
-    const [title, setTitle] = useState("");//string
-    useEffect(() => {
-        getNotes();
-    }, []);
+    const navigate = useNavigate();
 
-    const getNotes = () => {
-        api.get("/api/notes/")//envoie un requete pour recup. les notes
-        .then((res) => res.data)//recup. les notes
-        .then((data) => {setNotes(data); console.log(data)})// assigne les notes a notre variable 'notes' avec 'setNotes'
-        .catch((err) => alert(err));//catch si il y a une erreur et l'affiche sur le navigateur acev 'alert'(petit rectangle en haut, au milieux de l'ecran)
-    }
-
-    const deleteNote = (id) => {
-        api.delete(`/api/notes/delete/${id}/`).then((res) => {//requete pour delete
-            if (res.status === 204) alert("Note deleted!")//204 == le delete a marcher
-            else alert ("Failed to delete the note.")
-            getNotes()//c'est pas opti mais c'est pour refresh les element sur la page avec la note delete en moins
-        }).catch((error) => alert(error))
-    }
-
-    const creatNote = (f) => {
-        f.preventDefault()
-        api.post("/api/notes/", {content, title}).then((res) => {
-            if (res.status === 201) alert("Note created!")
-            else alert("Failed to make note.")
-            getNotes();
-        }).catch((error) => alert(error))
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/login")
     }
 
         return (
             <div>
                 <div>
-                    <h2>Notes</h2>
-                    {notes.map((note) => (<Note note={note} onDelete={deleteNote} key={note.id}/>))}
+                    <h2>Home Page</h2>
                 </div>
-                <h2>Creat a Note</h2>
-                <form onSubmit={creatNote}>
-                    <label htmlFor="title">Title:</label>
-                    <br/>
-                    <input type="text" id="title" name="title" required onChange={(f) => setTitle(f.target.value)} value={title}/>
-                    <br/>
-                    <label htmlFor="content">Content:</label>
-                    <br/>
-                    <textarea id="content" name="content" required value={content} onChange={(f) => setContent(f.target.value)}></textarea>
-                    <br/>
-                    <input type="submit" value="Submit"/>
-                </form>
+                <h2>Transcendence</h2>
+                <button className="logout-button" onClick={() => handleLogout()}>Logout</button>
             </div>
     );
 }
