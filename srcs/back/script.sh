@@ -1,8 +1,5 @@
 #!/bin/ash
 
-echo "START"
-
-
 function postgres_is_ready {
     PGPASSWORD="${POSTGRES_PASSWORD}" psql -h "${POSTGRES_HOST}" -U "${POSTGRES_USER}" -d "${POSTGRES_DB}" -p "${POSTGRES_PORT}" -c '\q' > /dev/null 2>&1
 }
