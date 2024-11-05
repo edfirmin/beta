@@ -14,7 +14,7 @@ function Register() {
         <div>
             {localStorage.clear()}
             <button className="go-to-login-button" onClick={() => handleGoToLoginButton()}>Login</button>
-            <Form route="/api/user/register/" method="register" />
+            <Form route="/api/user/register/" method="register"/>
         </div>
     );
 }
