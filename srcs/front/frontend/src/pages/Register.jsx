@@ -13,7 +13,7 @@ function Register() {
     return (
         <div>
             {localStorage.clear()}
-            <button className="go-to-login-button" onClick={() => handleGoToLoginButton()}>Login</button>
+            <button className="go-to-login-button" onClick={() => handleGoToLoginButton()}>Already have an account ? Login then</button>
             <Form route="/api/user/register/" method="register"/>
         </div>
     );

@@ -2,19 +2,17 @@ import "../styles/Profil.css"
 import api from "../api";
 
 function Profil() {
-    const getUserBrute = () => {
-        const response = api.get("http://localhost:8000/api/user/getUser/?asd");
-        return (response);
-    }
-    const lal = "lol faker"
-    const user = getUserBrute()
+    // const getUserBrute = () => {
+    //     const response = api.get("api/user/getUser/?asd");
+    //     return (response);
+    // }
+    // const user = getUserBrute()
+    // console.log(user)
 
     return (
-        <section className="bg">
-            <div className="content">
+        <section className="bg-profil">
+            <div className="content-profil">
                 Profil
-                <p>203
-                </p>
             </div>
         </section>
     );
